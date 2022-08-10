@@ -1,0 +1,338 @@
+* {
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    color: #ffffff;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #181820;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.center {
+    align-self: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 30px 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #181820;
+    height: 100vh;
+    gap: 1.5rem;
+}
+
+.title,
+.button {
+    flex: none;
+}
+
+.todo-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    border: 2px solid #21212b;
+    border-radius: 16px;
+    cursor: text;
+    color: #b9b9bc;
+    padding: 10px 20px 10px 10px;
+    transition: ease-out 0.1s;
+}
+
+.button-container:hover {
+    background-color: #21212b;
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+.button {
+    font-size: 1rem;
+    outline: none;
+    display: flex;
+    border: none;
+    align-self: stretch;
+    flex-grow: 1;
+    transition: ease-out 0.1s;
+    user-select: none;
+    background-color: #181820;
+}
+
+.button-container:hover > .button {
+    background-color: #21212b;
+}
+
+.button__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1;
+    line-height: 0;
+    color: #181820;
+    border-radius: 10px;
+    background-color: #fdc029;
+    font-size: 1.65rem;
+    font-weight: 500;
+    margin-right: 10px;
+    transition: ease-out 0.1s;
+    cursor: pointer;
+    border: none;
+}
+
+.error {
+    color: hsl(0 75% 45%);
+    margin-left: 6px;
+    margin-top: 0.5rem;
+}
+
+.counter {
+    margin-left: 6px;
+    margin-top: 20px;
+}
+
+.counter > span {
+    transition: all 1s;
+}
+
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0 10px;
+    transition: all 0.1s;
+}
+
+.todo-delete {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 2px 16px;
+    user-select: none;
+    font-size: 2rem;
+    border-left: 3px solid #181820;
+    transition: ease-out 0.1s;
+    border-radius: 0 16px 16px 0;
+    animation: hideDeleteBtn 0.2s forwards paused;
+}
+
+.todo-delete:hover {
+    color: #fdc029;
+}
+
+input[type="checkbox"].todo-checkbox {
+    opacity: inherit;
+    position: relative;
+    align-self: center;
+    appearance: none;
+    cursor: pointer;
+    border: 3px solid #fdc029;
+    border-radius: 10px;
+    width: 29px;
+    height: 29px;
+    margin: 10px;
+    transition: ease-out 0.1s;
+    animation: hideCheckbox 0.2s forwards paused;
+}
+
+input[type="checkbox"].todo-checkbox:checked {
+    background-color: #fdc029;
+}
+
+input[type="checkbox"].todo-checkbox:checked,
+input[type="checkbox"].todo-checkbox:checked + label.todo-text {
+    opacity: 0.6;
+}
+
+input[type="checkbox"].todo-checkbox:checked:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 12px;
+    border: solid #181820;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: translate(-50%, -50%) rotate(45deg);
+    -ms-transform: translate(-50%, -50%) rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.todo-checkbox:hover,
+.todo-text:hover + .todo-checkbox,
+input[type="checkbox"].todo-checkbox:focus-visible {
+    background-color: #42392b;
+}
+
+.todo-text {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    padding: 10px 0;
+    flex-basis: min-content;
+    word-break: break-all;
+    cursor: pointer;
+    margin-right: 10px;
+    animation: hideText 0.2s forwards paused;
+}
+
+.todo-text__inner {
+    animation: hideTextInner 0.2s forwards paused;
+}
+
+.todo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: ease-out 0.1s;
+    background-color: #21212b;
+    border-radius: 16px;
+    animation: hideElement 0.2s forwards paused;
+}
+
+label.todo-text > span {
+    position: relative;
+}
+
+.todo-container label.todo-text > span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    background-color: #ffffff;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: right;
+    transform-origin: right;
+    transition: -webkit-transform 150ms ease-in-out;
+    transition: transform 150ms ease-in-out;
+    transition: transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out;
+}
+
+input[type="checkbox"].todo-checkbox:checked + label.todo-text > span::after {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transform-origin: left;
+    transform-origin: left;
+}
+
+.todo-container:hover {
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes hideElement {
+    0% {
+        height: auto;
+        opacity: 1;
+        margin-bottom: 20px;
+    }
+
+    75% {
+        opacity: 0;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    100% {
+        opacity: 0;
+        height: 0;
+        line-height: 0;
+        margin-bottom: 0;
+    }
+}
+
+@keyframes hideCheckbox {
+    0% {
+        opacity: 1;
+        height: 29px;
+        width: 29px;
+        border-width: 3px;
+        margin: 10px;
+        line-height: normal;
+    }
+
+    75% {
+        opacity: 0;
+        height: 29px;
+        width: 29px;
+        border-width: 3px;
+        margin: 10px;
+        line-height: normal;
+    }
+
+    100% {
+        opacity: 0;
+        height: 0;
+        width: 0;
+        border-width: 0;
+        line-height: 0;
+        margin: 0;
+    }
+}
+
+@keyframes hideText {
+    0% {
+        height: auto;
+        line-height: normal;
+        margin-right: 10px;
+        padding: 10px 0;
+    }
+
+    75% {
+        height: auto;
+        line-height: normal;
+        margin-right: 10px;
+        padding: 10px 0;
+    }
+
+    100% {
+        height: 0;
+        line-height: 0;
+        margin-bottom: 0;
+        padding: 0;
+    }
+}
+
+@keyframes hideTextInner {
+    75% {
+        height: auto;
+        line-height: normal;
+        font-size: inherit;
+    }
+
+    100% {
+        height: 0;
+        line-height: 0;
+        font-size: 0;
+    }
+}
+
+@keyframes hideDeleteBtn {
+    75% {
+        font-size: 2rem;
+        padding: 2px 16px;
+    }
+
+    85% {
+        font-size: 0;
+    }
+
+    100% {
+        font-size: 0;
+        padding: 0;
+    }
+}
